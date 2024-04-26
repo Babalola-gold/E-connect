@@ -20,14 +20,14 @@ nav {
 
 }
 
-@media(max-width: 768px) {
+/* @media(max-width: 768px) {
     nav {
         display: none;
-        /* width: 100%; */
+        
 
     }
 
-}
+} */
 
 .navbar {
     width: 1440px;

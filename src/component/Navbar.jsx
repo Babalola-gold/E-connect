@@ -56,7 +56,7 @@ const Navbar = () => {
             </nav>
 
             <div>
-                <div className='navbar'>
+                {/* <div className='navbar'>
                     <div className='frame_1'>
                         <img className='lines' src={line} alt="" />
                         <img className='logos' src={logos} alt="" />
@@ -91,7 +91,7 @@ const Navbar = () => {
                             <div className='w-[30px] h-[16px] p-[10px]'>
                                 <span className='sign-in'>Log In</span>
                             </div>
-                            {/* <span className='text-white border-l-2 border-blue-700'></span> */}
+                            
                             <div className='signup'>
                                 <span className='sign-up'>Sign Up</span>
                             </div>
@@ -102,10 +102,10 @@ const Navbar = () => {
 
 
                     </div>
-                </div>
+                </div> */}
             </div >
 
-            {/* Your other content here */}
+            
         </div >
     );
 };
