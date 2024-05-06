@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
@@ -9,7 +9,8 @@ import axios from 'axios';
 
 const SignUp = () => {
     const navigate = useNavigate();
-    const [signingUp, setSigningUp] = useState(false); // State to track signup process
+    const URL = 'http://localhost:5000/register';
+    // State to track signup process
     //  validationSchema: validationSchema,
     const validationSchema = Yup.object({
         firstName: Yup.string()
@@ -36,35 +37,21 @@ const SignUp = () => {
 
     const { handleChange, handleSubmit, values, errors } = useFormik({
         initialValues: {
-            name: '',
+            firstName: '',
             email: '',
             password: '',
             confirmPassword: '',
-            phone: '',
+            phone: '', // Changed from 'number' to 'phone'
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            setSigningUp(true);
-            axios.post(URL, values)
-            .post('http://localhost:5000/register', newUser)
-                .then((response) => {
-                    if (response.data.status == 200) {
-                        setTimeout(() => {
-                            navigate("/login");
-                        }, 3000);
-                    } else {
-                        navigate("/signup");
-                    }
-                })
-                .catch((error) => {
-                    console.error("Signup failed:", error);
-                })
-                .finally(() => {
-                    setTimeout(() => {
-                        setSigningUp(false);
-                    }, 3000);
-                });
+            axios.post('http://localhost:5000/register', values)
+            console.log(values);
+            navigate('/login');
+
+
         },
+
     });
 
 
@@ -136,16 +123,16 @@ const SignUp = () => {
 
                             required
                         />
-                        <span className='text-red-800'>{errors.password} </span>
+                        <span className='text-red-800'>{errors.password}</span>
 
                     </div>
                     <div className="mb-4">
 
                         <input
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                            name="Number"
-                            type="Number"
-                            id="Number"
+                            name="phone"
+                            type="phone"
+                            id="phone"
                             autoComplete="current-password"
                             value={values.number}
                             onChange={handleChange}
@@ -170,8 +157,7 @@ const SignUp = () => {
                     <div className="flex items-center justify-between  ">
                         <button
                             className="bg-blue-500 hover:bg-blue-700 w-[486px] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                            type="submit" disabled={signingUp}>
-                            {signingUp ? "Signing up..." : "Signup"}
+                            type="submit" >Sign Up
                         </button>
                     </div>
                 </form>

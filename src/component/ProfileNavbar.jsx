@@ -8,16 +8,22 @@ import Avatar from '@mui/material/Avatar';
 import { useState } from 'react';
 
 const ProfileNavbar = () => {
+    const navigate = useNavigate();
     const [open, setOpen] = useState(false);
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+          navigate('/')
+      };
     const toggleDrawer = (newOpen) => () => {
         setOpen(newOpen);
     };
     const DrawerList = (
         <Box sx={{ width: [130, 240] }} role="presentation" onClick={toggleDrawer(false)}>
              <nav className=' lg:w-60 w-40 shadow-sm lg:bg-gradient-to-r from-slate-950 to-slate-900 lg:p-5 p-3 h-screen fixed top-0 left-0 z-10 overflow-auto bg-black'>
-                <div className='mb-10'>
-                    <p className="logo1">Learnify</p>
-                </div>
+                {/* <div className='mb-10'>
+                    <p className="logo1">E-connect</p>
+                </div> */}
                 <div className='!py-4'>
                     <small className='text-yellow-500 font-bold'>General</small>
                 </div>
@@ -41,7 +47,7 @@ const ProfileNavbar = () => {
                         <path d="M16.5 6.5C16.5 8.98528 14.4853 11 12 11C9.51472 11 7.5 8.98528 7.5 6.5C7.5 4.01472 9.51472 2 12 2C14.4853 2 16.5 4.01472 16.5 6.5Z" stroke="currentColor" stroke-width="1.5" />
                         <path d="M18.4332 13.8485C18.7685 13.4851 18.9362 13.3035 19.1143 13.1975C19.5442 12.9418 20.0736 12.9339 20.5107 13.1765C20.6918 13.2771 20.8646 13.4537 21.2103 13.8067C21.5559 14.1598 21.7287 14.3364 21.8272 14.5214C22.0647 14.9679 22.0569 15.5087 21.8066 15.9478C21.7029 16.1298 21.5251 16.3011 21.1694 16.6437L16.9378 20.7194C16.2638 21.3686 15.9268 21.6932 15.5056 21.8577C15.0845 22.0222 14.6214 22.0101 13.6954 21.9859L13.5694 21.9826C13.2875 21.9752 13.1466 21.9715 13.0646 21.8785C12.9827 21.7855 12.9939 21.6419 13.0162 21.3548L13.0284 21.1988C13.0914 20.3906 13.1228 19.9865 13.2807 19.6232C13.4385 19.2599 13.7107 18.965 14.2552 18.375L18.4332 13.8485Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
                     </svg>
-                    <span><small className='text-white '>Student profile</small></span>
+                    <span><small className='text-white '>Post Property</small></span>
                 </NavLink>
 
 
@@ -51,18 +57,18 @@ const ProfileNavbar = () => {
                         <path d="M12.5 2H12.7727C16.0339 2 17.6645 2 18.7969 2.79784C19.1214 3.02643 19.4094 3.29752 19.6523 3.60289C20.5 4.66867 20.5 6.20336 20.5 9.27273V11.8182C20.5 14.7814 20.5 16.2629 20.0311 17.4462C19.2772 19.3486 17.6829 20.8491 15.6616 21.5586C14.4044 22 12.8302 22 9.68182 22C7.88275 22 6.98322 22 6.26478 21.7478C5.10979 21.3424 4.19875 20.4849 3.76796 19.3979C3.5 18.7217 3.5 17.8751 3.5 16.1818V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M20.5 12C20.5 13.8409 19.0076 15.3333 17.1667 15.3333C16.5009 15.3333 15.716 15.2167 15.0686 15.3901C14.4935 15.5442 14.0442 15.9935 13.8901 16.5686C13.7167 17.216 13.8333 18.0009 13.8333 18.6667C13.8333 20.5076 12.3409 22 10.5 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                    <span><small className='text-white '>Documents</small></span>
+                    <span><small className='text-white '>My Listing</small></span>
                 </NavLink>
 
-                <div className='!py-4'>
+                {/* <div className='!py-4'>
                     <small className='text-yellow-500 font-bold'>Academics</small>
-                </div>
+                </div> */}
                 <NavLink to="/user/registration" className='flex gap-5 items-center ps-3 rounded-sm mb-4'>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" color="#ffffff" fill="none">
                         <path d="M6.51379 2C5.20952 2.12853 4.33158 2.41902 3.6763 3.07554C2.50098 4.25309 2.50098 6.14832 2.50098 9.93879V13.9592C2.50098 17.7497 2.50098 19.6449 3.6763 20.8225C4.85163 22 6.74328 22 10.5266 22H12.533C16.3163 22 18.208 22 19.3833 20.8225C20.45 19.7538 20.5486 18.1056 20.5577 14.9766" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M10.5261 7.00013L11.5293 10.5001C12.0895 11.6101 12.7924 11.9005 14.5387 12.0001C15.9279 11.9657 16.7344 11.8021 17.4215 11.2041C17.8906 10.7958 18.1031 10.1812 18.2055 9.56889L18.5514 7.50013M21.0592 5.50013V10.5001M8.60078 4.93259C10.1876 3.61641 11.6021 2.90936 14.5348 2.13121C14.8651 2.04356 15.2145 2.04521 15.544 2.13585C18.1405 2.85008 19.5418 3.48376 21.42 4.89366C21.5005 4.95409 21.524 5.06556 21.4676 5.14878C20.8555 6.0512 19.4857 6.78153 16.1282 8.08399C15.4302 8.35477 14.6524 8.3485 13.9566 8.0721C10.3807 6.65155 8.73723 5.89271 8.53769 5.10312C8.52161 5.03948 8.55017 4.97457 8.60078 4.93259Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                    <span><small className='text-white '>Course registration</small></span>
+                    <span><small className='text-white '>Profile</small></span>
                 </NavLink>
 
 
@@ -72,86 +78,10 @@ const ProfileNavbar = () => {
                         <path d="M12 7.80556C11.3131 7.08403 9.32175 5.3704 5.98056 4.76958C4.2879 4.4652 3.44157 4.31301 2.72078 4.89633C2 5.47965 2 6.42688 2 8.32133V15.1297C2 16.8619 2 17.728 2.4626 18.2687C2.9252 18.8095 3.94365 18.9926 5.98056 19.3589C7.79633 19.6854 9.21344 20.2057 10.2392 20.7285C11.2484 21.2428 11.753 21.5 12 21.5C12.247 21.5 12.7516 21.2428 13.7608 20.7285C14.7866 20.2057 16.2037 19.6854 18.0194 19.3589C20.0564 18.9926 21.0748 18.8095 21.5374 18.2687C22 17.728 22 16.8619 22 15.1297V8.32133C22 6.42688 22 5.47965 21.2792 4.89633C20.5584 4.31301 19 4.76958 18 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
 
-                    <span><small className='text-white '>Resources</small></span>
+                    <span><small className='text-white '>Messages</small></span>
                 </NavLink>
 
-
-                <NavLink to="/user/result" className='flex gap-5 items-center ps-3 rounded-sm mb-4'>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" color="#ffffff" fill="none">
-                        <path d="M5.97492 16.9866V6.53176C5.97492 5.18708 6.03245 3.6264 7.03977 2.73286C7.86598 1.99997 9.03378 1.99999 10.1399 2H17.4509C18.4773 2 19.5415 2.01838 20.4624 2.47045C20.5366 2.50684 20.6074 2.54483 20.6751 2.58464C22.0418 3.38809 21.9999 5.30216 21.9999 6.88462V17.4169C21.9999 18.4584 21.952 19.528 21.5196 20.476C21.1061 21.3828 20.5403 21.7897 19.496 21.9822M5.97492 16.9866H14.8045C15.2176 16.9866 15.5897 17.2396 15.7348 17.6254C15.8611 17.9615 15.9655 18.2521 16.0576 18.5248C16.381 19.4827 16.6645 20.4938 17.3454 21.2423C17.754 21.6916 18.183 21.92 18.7541 21.9822M5.97492 16.9866H2.96877C2.4162 16.9866 1.95792 17.4343 2.00308 17.9836C2.05046 18.56 2.15239 19.062 2.34264 19.5993C2.67902 20.5493 3.26232 21.5103 4.22224 21.8236C4.57657 21.9393 4.96889 21.9772 5.47414 21.9822H18.7541M19.496 21.9822C19.2221 22.0054 18.9773 22.0065 18.7541 21.9822M19.496 21.9822H18.7541" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M10.4688 7H17.4688" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                        <path d="M10.4688 11H13.9688" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                    </svg>
-
-                    <span><small className='text-white '>Result</small></span>
-                </NavLink>
-
-
-                <NavLink to="/user/timetable" className='flex gap-5 items-center ps-3 rounded-sm mb-4'>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" color="#ffffff" fill="none">
-                        <path d="M20.1068 20.1089C18.7156 21.5001 16.4764 21.5001 11.998 21.5001C7.5197 21.5001 5.28053 21.5001 3.88929 20.1089C2.49805 18.7176 2.49805 16.4785 2.49805 12.0001C2.49805 7.52178 2.49805 5.28261 3.88929 3.89137C5.28053 2.50012 7.5197 2.50012 11.998 2.50012C16.4764 2.50012 18.7156 2.50012 20.1068 3.89137C21.498 5.28261 21.498 7.52178 21.498 12.0001C21.498 16.4785 21.498 18.7176 20.1068 20.1089Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M8.99805 21.5001L8.99805 2.50012" stroke="currentColor" stroke-width="1.5" />
-                        <path d="M21.498 8.00012L2.49805 8.00012" stroke="currentColor" stroke-width="1.5" />
-                        <path d="M21.498 16.0001H2.49805" stroke="currentColor" stroke-width="1.5" />
-                    </svg>
-
-                    <span><small className='text-white '>Timetable</small></span>
-                </NavLink>
-
-
-
-                <div className='!py-4'>
-                    <small className='text-yellow-500 font-bold'>Payments</small>
-                </div>
-                <NavLink to="/user/tuition" className='flex gap-5 items-center ps-3 rounded-sm mb-4'>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" color="#ffffff" fill="none">
-                        <path d="M2 12C2 8.46252 2 6.69377 3.0528 5.5129C3.22119 5.32403 3.40678 5.14935 3.60746 4.99087C4.86213 4 6.74142 4 10.5 4H13.5C17.2586 4 19.1379 4 20.3925 4.99087C20.5932 5.14935 20.7788 5.32403 20.9472 5.5129C22 6.69377 22 8.46252 22 12C22 15.5375 22 17.3062 20.9472 18.4871C20.7788 18.676 20.5932 18.8506 20.3925 19.0091C19.1379 20 17.2586 20 13.5 20H10.5C6.74142 20 4.86213 20 3.60746 19.0091C3.40678 18.8506 3.22119 18.676 3.0528 18.4871C2 17.3062 2 15.5375 2 12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M10 16H11.5" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M14.5 16L18 16" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M2 9H22" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
-                    </svg>
-                    <span><small className='text-white '>Tuition</small></span>
-                </NavLink>
-
-
-                <NavLink to="/user/payment" className='flex gap-5 items-center ps-3 rounded-sm mb-4'>
-
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" color="#ffffff" fill="none">
-                        <path d="M20.016 2C18.9026 2 18 4.68629 18 8H20.016C20.9876 8 21.4734 8 21.7741 7.66455C22.0749 7.32909 22.0225 6.88733 21.9178 6.00381C21.6414 3.67143 20.8943 2 20.016 2Z" stroke="currentColor" stroke-width="1.5" />
-                        <path d="M18 8.05426V18.6458C18 20.1575 18 20.9133 17.538 21.2108C16.7831 21.6971 15.6161 20.6774 15.0291 20.3073C14.5441 20.0014 14.3017 19.8485 14.0325 19.8397C13.7417 19.8301 13.4949 19.9768 12.9709 20.3073L11.06 21.5124C10.5445 21.8374 10.2868 22 10 22C9.71321 22 9.45546 21.8374 8.94 21.5124L7.02913 20.3073C6.54415 20.0014 6.30166 19.8485 6.03253 19.8397C5.74172 19.8301 5.49493 19.9768 4.97087 20.3073C4.38395 20.6774 3.21687 21.6971 2.46195 21.2108C2 20.9133 2 20.1575 2 18.6458V8.05426C2 5.20025 2 3.77325 2.87868 2.88663C3.75736 2 5.17157 2 8 2H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M6 6H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M8 10H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M12.5 10.875C11.6716 10.875 11 11.4626 11 12.1875C11 12.9124 11.6716 13.5 12.5 13.5C13.3284 13.5 14 14.0876 14 14.8125C14 15.5374 13.3284 16.125 12.5 16.125M12.5 10.875C13.1531 10.875 13.7087 11.2402 13.9146 11.75M12.5 10.875V10M12.5 16.125C11.8469 16.125 11.2913 15.7598 11.0854 15.25M12.5 16.125V17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                    </svg>
-                    <span><small className='text-white '>Payment history</small></span>
-                </NavLink>
-
-
-
-                <div className='!py-4'>
-                    <small className='text-yellow-500 font-bold'>Others</small>
-                </div>
-                <NavLink to="/user/notification" className='flex gap-5 items-center ps-3 rounded-sm mb-4'>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" color="#ffffff" fill="none">
-                        <path d="M2.52992 14.7696C2.31727 16.1636 3.268 17.1312 4.43205 17.6134C8.89481 19.4622 15.1052 19.4622 19.5679 17.6134C20.732 17.1312 21.6827 16.1636 21.4701 14.7696C21.3394 13.9129 20.6932 13.1995 20.2144 12.5029C19.5873 11.5793 19.525 10.5718 19.5249 9.5C19.5249 5.35786 16.1559 2 12 2C7.84413 2 4.47513 5.35786 4.47513 9.5C4.47503 10.5718 4.41272 11.5793 3.78561 12.5029C3.30684 13.1995 2.66061 13.9129 2.52992 14.7696Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M8 19C8.45849 20.7252 10.0755 22 12 22C13.9245 22 15.5415 20.7252 16 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                    <span><small className='text-white '>Notification</small></span>
-                </NavLink>
-
-
-                <NavLink to="/user/hostel" className='flex gap-5 items-center ps-3 rounded-sm mb-4'>
-
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" color="#ffffff" fill="none">
-                        <path d="M3 4V20C3 20.9428 3 21.4142 3.29289 21.7071C3.58579 22 4.05719 22 5 22H19C19.9428 22 20.4142 22 20.7071 21.7071C21 21.4142 21 20.9428 21 20V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M10.5 8V9.5M10.5 11V9.5M13.5 8V9.5M13.5 11V9.5M10.5 9.5H13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M14 22.0001L14 18C14 16.8954 13.1046 16 12 16C10.8954 16 10 16.8954 10 18V22.0001" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M2 4H8C8.6399 2.82727 10.1897 2 12 2C13.8103 2 15.3601 2.82727 16 4H22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M6 8H7M6 12H7M6 16H7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M17 8H18M17 12H18M17 16H18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                    <span><small className='text-white '>Hostel</small></span>
-                </NavLink>
+                
 
                 <NavLink to="/user/help" className='flex gap-5 items-center ps-3 rounded-sm mb-4'>
 

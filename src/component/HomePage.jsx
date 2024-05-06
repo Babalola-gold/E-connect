@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown, faMagnifyingGlass, faShareNodes } from '@fortawesome/free-solid-svg-icons';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import bot from '/src/assets/Rectangle 102.png';
 import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
@@ -16,11 +16,26 @@ import gown from '/src/assets/Rectangle 16 (1).png';
 import bucket from '/src/assets/Rectangle 16 (2).png';
 import cougar from '/src/assets/Rectangle 16 (3).png';
 import IT from '/src/assets/Rectangl.png';
+import axios from 'axios';
 
 
 
 
 const HomePage = () => {
+
+    const [trendingProduct, setTrendingProduct] = useState()
+
+    useEffect(() => {
+        axios.get('http://localhost:5000/products')
+            .then(res => {
+                setTrendingProduct(res.data)
+                console.log(res.data);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }, [])
+
 
     // const [expanded, setExpanded] = useState({
     //     panel1: false,
@@ -414,255 +429,67 @@ const HomePage = () => {
                 </div>
 
                 <div className='trending'>
-                    <div className='text_trend'>
-                        Trending Products
+                    <h1 className='text_trend mb-10'>Trending Products</h1>
 
-                    </div>
-                    <br /><br />
+                    <div className='flex space-x-6'>
+                        {trendingProduct && trendingProduct.length > 0 ? (
+                            trendingProduct.map((tproduct) => (
+                                <div key={tproduct.id} >
+                                    <div className='inner_trend'>
+                                        <div className='trend_one'>
 
-                    <div className='inner_trend'>
-                        <div className='trend_one'>
-                            <div class="card">
-                                <img className='w-[259px] h-[205px] rounded ' src={freezer} alt="Image" class="card-image" />
+                                            <div className='card my-5'>
+                                                <img src={tproduct.image} alt={tproduct.name} />
+                                                <div className='card-content my-3'>
 
+                                                    <div className='w-[92px] h-[32px] '>
+                                                        <h1 className='card-text'>{tproduct.name}</h1>
+                                                        <p className='price'>Price: {tproduct.price}</p>
+                                                    </div>
+                                                    <div className='flex w-[63px] h-[24px] gap-[15px]'>
+                                                        <img className='w-[24px] h-[24px]' src={cart2} alt="" />
+                                                        <FontAwesomeIcon className='w-[18px] h-[20px] top-[2px] left-[3px] ' icon={faShareNodes} />
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                                <div class="card-content my-3">
+                                            <div className='card my-5'>
+                                                <img src={tproduct.image} alt={tproduct.name} />
+                                                <div className='card-content my-3'>
 
+                                                    <div className='w-[92px] h-[32px] '>
+                                                        <h1 className='card-text'>{tproduct.name}</h1>
+                                                        <p className='price'>Price: {tproduct.price}</p>
+                                                    </div>
+                                                    <div className='flex w-[63px] h-[24px] gap-[15px]'>
+                                                        <img className='w-[24px] h-[24px]' src={cart2} alt="" />
+                                                        <FontAwesomeIcon className='w-[18px] h-[20px] top-[2px] left-[3px] ' icon={faShareNodes} />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div className='card my-5'>
+                                                <img src={tproduct.image} alt={tproduct.name} />
+                                                <div className='card-content my-3'>
 
-                                    <div className='w-[92px] h-[32px] '>
-
-                                        <p class="card-text">Freezer</p>
-                                        <span className='price'># 50, 000</span>
-
+                                                    <div className='w-[92px] h-[32px] '>
+                                                        <h1 className='card-text'>{tproduct.name}</h1>
+                                                        <p className='price'>Price: {tproduct.price}</p>
+                                                    </div>
+                                                    <div className='flex w-[63px] h-[24px] gap-[15px]'>
+                                                        <img className='w-[24px] h-[24px]' src={cart2} alt="" />
+                                                        <FontAwesomeIcon className='w-[18px] h-[20px] top-[2px] left-[3px] ' icon={faShareNodes} />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                     </div>
-
-                                    <div className='flex w-[63px] h-[24px] gap-[15px] '>
-                                        <img className=' w-[24px] h-[24px] ' src={cart2} alt="" />
-                                        <FontAwesomeIcon className=' w-[18px] h-[20px] top-[2px] left-[3px] ' icon={faShareNodes} />
-
-                                    </div>
-
-
                                 </div>
-
-                                <div className='input_range'>
-                                    <input  
-                                        type="range"
-                                        min="0"
-                                        max="100"
-                                        value={value}
-                                        onChange={handleRangeChange}
-                                    />
-
-                                </div>
-
-
-                            </div>
-                            <div class="card">
-                                <img className='w-[259px] h-[205px] rounded ' src={cookware} alt="Image" class="card-image" />
-                                <div class="card-content my-3">
-
-
-                                    <div className='w-[92px] h-[32px] '>
-
-                                        <p class="card-text">Core Ware</p>
-                                        <span className='price'># 50, 000</span>
-
-
-                                    </div>
-
-                                    <div className='flex w-[63px] h-[24px] gap-[15px] '>
-                                        <img className=' w-[24px] h-[24px] ' src={cart2} alt="" />
-                                        <FontAwesomeIcon className=' w-[18px] h-[20px] top-[2px] left-[3px] ' icon={faShareNodes} />
-
-                                    </div>
-
-
-                                </div>
-                                
-                                <div className='input_range'>
-                                    <input  
-                                        type="range"
-                                        min="0"
-                                        max="100"
-                                        value={value}
-                                        onChange={handleRangeChange}
-                                    />
-
-                                </div>
-                            </div>
-                            <div class="card">
-                                <img className='w-[259px] h-[205px] rounded ' src={microwave} alt="Image" class="card-image" />
-                                <div class="card-content my-3">
-
-
-                                    <div className='w-[92px] h-[32px] '>
-
-                                        <p class="card-text">Micro Wave</p>
-                                        <span className='price'># 50, 000</span>
-
-
-                                    </div>
-
-                                    <div className='flex w-[63px] h-[24px] gap-[15px] '>
-                                        <img className=' w-[24px] h-[24px] ' src={cart2} alt="" />
-                                        <FontAwesomeIcon className=' w-[18px] h-[20px] top-[2px] left-[3px] ' icon={faShareNodes} />
-
-                                    </div>
-
-
-                                </div>
-                                <div className='input_range'>
-                                    <input  
-                                        type="range"
-                                        min="0"
-                                        max="100"
-                                        value={value}
-                                        onChange={handleRangeChange}
-                                    />
-
-                                </div>
-                            </div>
-                        </div>
-                        <div className='trend_one my-5'>
-                            <div class="card">
-                                <img className='w-[259px] h-[205px] rounded ' src={shoe} alt="Image" class="card-image" />
-                                <div class="card-content my-3">
-
-
-                                    <div className='w-[92px] h-[32px] '>
-
-                                        <p class="card-text">Shoe</p>
-                                        <span className='price'># 50, 000</span>
-
-
-                                    </div>
-
-                                    <div className='flex w-[63px] h-[24px] gap-[15px] '>
-                                        <img className=' w-[24px] h-[24px] ' src={cart2} alt="" />
-                                        <FontAwesomeIcon className=' w-[18px] h-[20px] top-[2px] left-[3px] ' icon={faShareNodes} />
-
-                                    </div>
-
-
-                                </div>
-                            </div>
-                            <div class="card">
-                                <img className='w-[259px] h-[205px] rounded ' src={gown} alt="Image" class="card-image" />
-                                <div class="card-content my-3">
-
-
-                                    <div className='w-[92px] h-[32px] '>
-
-                                        <p class="card-text">Gown</p>
-                                        <span className='price'># 50, 000</span>
-
-
-                                    </div>
-
-                                    <div className='flex w-[63px] h-[24px] gap-[15px] '>
-                                        <img className=' w-[24px] h-[24px] ' src={cart2} alt="" />
-                                        <FontAwesomeIcon className=' w-[18px] h-[20px] top-[2px] left-[3px] ' icon={faShareNodes} />
-
-                                    </div>
-
-
-                                </div>
-                            </div>
-                            <div class="card">
-                                <img className='w-[259px] h-[205px] rounded ' src={bucket} alt="Image" class="card-image" />
-                                <div class="card-content my-3">
-
-
-                                    <div className='w-[92px] h-[32px] '>
-
-                                        <p class="card-text">Bucket</p>
-                                        <span className='price'># 50, 000</span>
-
-
-                                    </div>
-
-                                    <div className='flex w-[63px] h-[24px] gap-[15px] '>
-                                        <img className=' w-[24px] h-[24px] ' src={cart2} alt="" />
-                                        <FontAwesomeIcon className=' w-[18px] h-[20px] top-[2px] left-[3px] ' icon={faShareNodes} />
-
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-                        <div className='trend_one'>
-                            <div class="card">
-                                <img className='w-[259px] h-[205px] rounded ' src={cougar} alt="Image" class="card-image" />
-                                <div class="card-content my-3">
-
-
-                                    <div className='w-[92px] h-[32px] '>
-
-                                        <p class="card-text">Freezer</p>
-                                        <span className='price'># 50, 000</span>
-
-
-                                    </div>
-
-                                    <div className='flex w-[63px] h-[24px] gap-[15px] '>
-                                        <img className=' w-[24px] h-[24px] ' src={cart2} alt="" />
-                                        <FontAwesomeIcon className=' w-[18px] h-[20px] top-[2px] left-[3px] ' icon={faShareNodes} />
-
-                                    </div>
-
-
-                                </div>
-                            </div>
-                            <div class="card">
-                                <img className='w-[259px] h-[205px] rounded ' src={cougar} alt="Image" class="card-image" />
-                                <div class="card-content my-3">
-
-
-                                    <div className='w-[92px] h-[32px] '>
-
-                                        <p class="card-text">Freezer</p>
-                                        <span className='price'># 50, 000</span>
-
-
-                                    </div>
-
-                                    <div className='flex w-[63px] h-[24px] gap-[15px] '>
-                                        <img className=' w-[24px] h-[24px] ' src={cart2} alt="" />
-                                        <FontAwesomeIcon className=' w-[18px] h-[20px] top-[2px] left-[3px] ' icon={faShareNodes} />
-
-                                    </div>
-
-
-                                </div>
-                            </div>
-                            <div class="card">
-                                <img className='w-[259px] h-[205px] rounded ' src={cougar} alt="Image" class="card-image" />
-                                <div class="card-content my-3">
-
-
-                                    <div className='w-[92px] h-[32px] '>
-
-                                        <p class="card-text">Freezer</p>
-                                        <span className='price'># 50, 000</span>
-
-
-                                    </div>
-
-                                    <div className='flex w-[63px] h-[24px] gap-[15px] '>
-                                        <img className=' w-[24px] h-[24px] ' src={cart2} alt="" />
-                                        <FontAwesomeIcon className=' w-[18px] h-[20px] top-[2px] left-[3px] ' icon={faShareNodes} />
-
-                                    </div>
-
-
-                                </div>
-
-                            </div>
-                        </div>
-
+                            ))
+                        ) : (
+                            <div>No products to display.</div>
+                        )}
                     </div>
                 </div>
 

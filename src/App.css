@@ -649,26 +649,17 @@ nav {
 
 }
 
-.inner_trend {
+/* .inner_trend {
 
     width: 877px;
     height: 975px;
     gap: 5px;
     opacity: 0px;
 
-}
-
-.trend_one {
-    display: flex;
-    width: 877px;
-    height: 305px;
-    gap: 10px;
-    opacity: 0px;
-
-}
+} */
 
 .card {
-    width: 259px;
+    width: 250px;
     height: 305px;
     gap: 0px;
     border-radius: 10px 10px 0px 0px;
@@ -732,7 +723,7 @@ nav {
 }
 
 .price {
-    width: 73px;
+    width: 80px;
     height: 10px;
     gap: 0px;
     opacity: 0px;

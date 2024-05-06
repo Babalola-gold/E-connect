@@ -1,11 +1,13 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
 
 const LoginPage = () => {
+    const navigate = useNavigate();
     const validationSchema = Yup.object({
         email: Yup.string()
             .email('Invalid email address')
@@ -21,8 +23,19 @@ const LoginPage = () => {
             password: '',
         },
         validationSchema: validationSchema,
-        onSubmit: (values) => {
-            console.log(values);
+        onSubmit: (newUser) => {
+            axios.post('http://localhost:5000/signin', newUser)
+                
+                
+                .then(response => {
+                    localStorage.setItem('token', response.data.token);
+                    console.log(response.data); // Handle the response from the server
+                    navigate('/profile'); // Redirect to the dashboard after successful sign-in
+                })
+                .catch(error => {
+                    console.error(error); // Handle any errors that occur during the POST request
+                });
+            console.log(newUser);
         },
     });
 
