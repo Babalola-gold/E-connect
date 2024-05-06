@@ -163,7 +163,7 @@ const SignUp = () => {
                 </form>
             </div>
 
-            <div className=' bg-[#F8F8F8] h-[397px] '>
+            {/* <div className=' bg-[#F8F8F8] h-[397px] '>
                 <div className='inner-footer'>
                     <div className='foot-in'>
 
@@ -196,7 +196,7 @@ const SignUp = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </>
     )
 }
